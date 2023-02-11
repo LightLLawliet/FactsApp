@@ -32,7 +32,6 @@
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="serif-monospace"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,22 +40,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
-        android:fontFamily="serif-monospace"
-        android:text="@string/get_fact" />
+        android:fontFamily="serif"
+        android:text="@string/get_fact"
+        android:textFontWeight="700" />
 
     <Button
         android:id="@+id/getRandomButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
-        android:fontFamily="serif-monospace"
-        android:text="@string/get_random_fact" />
+        android:fontFamily="serif"
+        android:text="@string/get_random_fact"
+        android:textFontWeight="700" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/historyRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="serif-monospace"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </LinearLayout>
