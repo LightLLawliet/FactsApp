@@ -14,13 +14,13 @@
         android:visibility="gone" />
 
     <TextView
-        tools:text="Something went wrong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
         android:gravity="center"
         android:padding="@dimen/padding_small"
         android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/red" />
+        tools:text="Something went wrong" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -32,6 +32,7 @@
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -40,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
+        android:fontFamily="serif-monospace"
         android:text="@string/get_fact" />
 
     <Button
@@ -47,12 +49,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
+        android:fontFamily="serif-monospace"
         android:text="@string/get_random_fact" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/historyRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="serif-monospace"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </LinearLayout>
