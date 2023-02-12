@@ -31,7 +31,7 @@ class NumbersFragment : Fragment() {
         view.findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
 
         view.findViewById<View>(R.id.getFactButton).setOnClickListener {
-            showFragment?.show(DetailsFragment.newInstance("some info"))
+                showFragment.show(DetailsFragment.newInstance("some info"))
         }
     }
 
