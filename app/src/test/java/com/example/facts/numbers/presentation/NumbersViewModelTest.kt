@@ -57,7 +57,24 @@ class NumbersViewModelTest {
     /**
      * Try to get information about empty number
      */
+    @Test
+    fun `fact about empty number`() {
+        val communications = TestNumberCommunications()
+        val interactor = TestNumbersInteractor()
+        //1) initialize
+        val viewModel = NumbersViewModel(communications, interactor)
 
+        viewModel.fetchFact("")
+
+        assertEquals(0, interactor.fetchAboutRandomNumberCalledList.size)
+
+        assertEquals(0, communications.progressCalledList.size)
+        assertEquals(false, communications.progressCalledList[1])
+
+        assertEquals(1, communications.stateCalledList.size)
+        assertEquals(UiState.Error("entered  number is empty"), communications.stateCalledList[0])
+        assertEquals(0, communications.timesShowList)
+    }
 
     /**
      * Try to get information about some number
