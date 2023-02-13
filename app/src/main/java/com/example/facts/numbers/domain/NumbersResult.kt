@@ -2,9 +2,7 @@ package com.example.facts.numbers.domain
 
 sealed class NumbersResult {
 
-    interface Mapper<T> {
-        fun map(list: List<NumberFact>, errorMessage: String): T
-    }
+
 
     abstract fun <T> map(mapper: Mapper<T>): T
 
