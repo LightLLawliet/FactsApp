@@ -7,4 +7,10 @@ interface NumbersCommunications {
     fun showState(state: UiState)
 
     fun showList(list: List<NumberUi>)
+
+    class Base(
+
+    ){
+
+    }
 }
