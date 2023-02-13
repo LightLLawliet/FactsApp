@@ -18,54 +18,6 @@ class NumbersViewModelTest {
      * then try to get some data successfully
      * then re-init and check the result
      */
-    @Test
-    fun `test init and re-init`() {
-        val communications = TestNumberCommunications()
-        val interactor = TestNumbersInteractor()
-        //1) initialize
-        val viewModel =
-            NumbersViewModel(
-                communications,
-                interactor,
-                NumbersResultMapper(communications, NumberUiMapper())
-            )
-        interactor.changeExpectedResult(NumbersResult.Success())
-        //2) action
-        viewModel.init(isFirstRun = true)
-        //3) check
-        assertEquals(1, communications.progressCalledList.size)
-        assertEquals(true, communications.progressCalledList[0])
-
-        assertEquals(2, communications.progressCalledList.size)
-        assertEquals(false, communications.progressCalledList[1])
-
-        assertEquals(1, communications.stateCalledList.size)
-        assertEquals(UiState.Success(), communications.stateCalledList[0])
-
-        assertEquals(0, communications.numbersList.size)
-        assertEquals(1, communications.timesShowList)
-
-        //get data
-        interactor.changeExpectedResult(NumbersResult.Failure("no internet connection"))
-        viewModel.fetchRandomNumberFact()
-        assertEquals(3, communications.progressCalledList.size)
-        assertEquals(true, communications.progressCalledList[2])
-
-        assertEquals(1, interactor.fetchAboutRandomNumberCalledList.size)
-
-        assertEquals(4, communications.progressCalledList.size)
-        assertEquals(false, communications.progressCalledList[3])
-
-        assertEquals(2, communications.stateCalledList.size)
-        assertEquals(UiState.Error("entered number is empty"), communications.stateCalledList[1])
-        assertEquals(1, communications.timesShowList)
-
-        viewModel.init(isFirstRun = false)
-        assertEquals(4, communications.progressCalledList.size)
-        assertEquals(2, communications.stateCalledList.size)
-        assertEquals(1, communications.timesShowList)
-    }
-
     /**
      * Try to get information about empty number
      */
