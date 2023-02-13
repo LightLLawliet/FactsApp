@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 interface Communication {
 
     interface Observe<T> {
-
         fun observe(owner: LifecycleOwner, observer: Observer<T>)
     }
 
