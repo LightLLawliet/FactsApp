@@ -1,6 +1,8 @@
 package com.example.facts.numbers.presentation
 
-import junit.framework.Assert.assertEquals
+
+import com.example.facts.numbers.domain.NumbersResult
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
 class NumbersViewModelTest {
@@ -28,13 +30,13 @@ class NumbersViewModelTest {
         assertEquals(false, communications.progressCalledList[1])
 
         assertEquals(1, communications.stateCalledList.size)
-        assertEquals(UiState.Success(), communications.stateCalledList[0])
+        assertEquals(UiState.Success(emptyList<NumberUi>()), communications.stateCalledList[0])
 
         assertEquals(0, communications.numbersList.size)
         assertEquals(1, communications.timesShowList)
 
         //get data
-        interactor.changeExpectedResult(NumbersResult.Fail())
+        interactor.changeExpectedResult(NumbersResult.Fail("no internet connection"))
         viewModel.fetchRandomNumberData()
         assertEquals(3, communications.progressCalledList.size)
         assertEquals(true, communications.progressCalledList[2])
@@ -86,14 +88,20 @@ class NumbersViewModelTest {
         //1) initialize
         val viewModel = NumbersViewModel(communications, interactor)
 
-        interactor.changeExpectedResult(NumbersResult.Success(listOf(Number("45", "fact about 45"))))
+        interactor.changeExpectedResult(
+            NumbersResult.Success(
+                listOf(
+                    NumberFact("45", "fact about 45")
+                )
+            )
+        )
         viewModel.fetchFact("45")
 
         assertEquals(1, communications.progressCalledList.size)
         assertEquals(true, communications.progressCalledList[0])
 
         assertEquals(1, interactor.fetchAboutRandomNumberCalledList.size)
-        assertEquals(Number("45", "fact about 45"), interactor.fetchAboutNumberCalledList[0])
+        assertEquals(NumberFact("45", "fact about 45"), interactor.fetchAboutNumberCalledList[0])
 
         assertEquals(2, communications.progressCalledList.size)
         assertEquals(false, communications.progressCalledList[1])
@@ -122,8 +130,6 @@ class NumbersViewModelTest {
             timesShowList++
             numbersList.addAll(list)
         }
-
-        fun timesProgressCalled() = progressCalledList.size
     }
 
     private class TestNumbersInteractor : NumbersInteractor {
