@@ -12,6 +12,5 @@ data class NumberFact(
     }
 
     fun <T> map(mapper: Mapper<T>): T = mapper.map(id, fact)
-    fun toUi() = NumberUi(id, fact)
 }
 

@@ -12,7 +12,7 @@ class NumbersViewModel(
     private val communications: NumbersCommunications,
     private val interactor: NumbersInteractor,
     private val numbersResultMapper: NumbersResult.Mapper<Unit>
-) : FetchNumbers, ObserveNumbers, ViewModel() {
+) : FetchNumbers, ObserveNumbers {
 
 
     override fun observeProgress(owner: LifecycleOwner, observer: Observer<Boolean>) {
@@ -30,11 +30,11 @@ class NumbersViewModel(
     override fun init(isFirstRun: Boolean) {
         if (isFirstRun) {
             communications.showProgress(true)
-            viewModelScope.launch {
-                val result = interactor.init()
-                communications.showProgress(false)
-                result.map(numbersResultMapper)
-            }
+//            viewModelScope {
+//                val result = interactor.init()
+//                communications.showProgress(false)
+//                result.map(numbersResultMapper)
+//            }
         }
     }
 
